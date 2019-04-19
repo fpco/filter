@@ -1,0 +1,18 @@
+resolver: lts-13.6
+
+packages:
+- camel-case
+
+extra-deps:
+- git: https://github.com/nh2/linux-ptrace
+  commit: 8969355c2e1ce095ef58acc5f2c5f8a4ea3f1645
+- git: https://github.com/nh2/posix-waitpid.git
+  commit: d2d7e06d85965dd022705d3d4e8348940afabb5f
+- git: git@github.com:nh2/hatrace.git
+  commit: 7316b81c3131804fc90c123a10406d0677050f0c
+- git: git@github.com:nh2/haskell-cpu-instruction-counter.git
+  commit: 077539f25684ff9bf583204ccae5a1d77d617d1b
+- git: git@github.com:fpco/weigh.git
+  commit: b340069116c51326230bf2c821d1163a7f7d906a
+
+allow-newer: true
