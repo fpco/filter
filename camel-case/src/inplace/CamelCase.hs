@@ -9,8 +9,8 @@ import           Data.Word
 import           System.IO (stdout)
 import           GHC.Ptr
 
-camelCase :: Handle -> IO ()
-camelCase input = do
+camelCase :: Handle -> Handle -> IO ()
+camelCase input output = do
   buf <- SVM.new bufferSize
   let loop was_space0 = do
         size <- SVM.unsafeWith buf (\ptr -> hGetBuf input ptr bufferSize)
@@ -36,7 +36,8 @@ camelCase input = do
                    writer :: Ptr Word8 -> Int -> IO ()
                    writer (!start) (!dest)
                      | dest > 0 = do
-                       written <- hPutBufNonBlocking stdout start dest
+                       pure ()
+                       written <- hPutBufNonBlocking output start dest
                        writer (plusPtr start written) (dest - written)
                      | otherwise = pure ()
                 in do (dest0, was_space) <- reader (0, 0, was_space0)
@@ -44,4 +45,4 @@ camelCase input = do
                       loop was_space
   loop False
   where
-    bufferSize = 65536
+    bufferSize = 1

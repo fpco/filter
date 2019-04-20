@@ -46,7 +46,16 @@ executable camel-case
                      , camel-case
   default-language:    Haskell2010
 
-test-suite camel-case-space
+test-suite profile
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Profile.hs
+  build-depends:       base
+                     , camel-case
+  ghc-options:         -Wall
+  default-language:    Haskell2010
+
+test-suite space
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test
   main-is:             Space.hs
