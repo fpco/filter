@@ -4,4 +4,4 @@ import CamelCase
 import System.IO
 
 main :: IO ()
-main = camelCase stdin
+main = camelCase stdin stdout

@@ -20,16 +20,14 @@ import           Unsafe.Coerce
 
 camelCase :: Handle -> Handle -> IO ()
 camelCase input output = do
-
   buf <- SVM.new bufferSize
   SVM.unsafeWith
     buf
-    (\ptr -> -- wantReadableHandle_ "hGetBuf" input $ \Handle__ {haDevice = dev} ->
+    (\ptr -> wantReadableHandle_ "hGetBuf" input $ \Handle__ {haDevice = dev} ->
       (do
-        -- let fd = fdFD (unsafeCoerce dev)
+        let fd = fdFD (unsafeCoerce dev)
         let loop was_space0 = do
-              -- size <- hGetBufFd fd ptr bufferSize
-              size <- hGetBuf input ptr bufferSize
+              size <- hGetBufFd fd ptr bufferSize
               if size == 0
                 then pure ()
                 else if True
