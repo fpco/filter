@@ -1,8 +1,5 @@
 resolver: lts-13.6
 
-packages:
-- camel-case
-
 extra-deps:
 - git: https://github.com/nh2/linux-ptrace
   commit: 8969355c2e1ce095ef58acc5f2c5f8a4ea3f1645
