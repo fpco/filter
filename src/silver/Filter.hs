@@ -13,7 +13,7 @@ import           System.IO
 
 filterHandle :: Handle -> Handle -> String -> IO ()
 filterHandle inh outh (S8.pack -> arg) = do
-  interactHandle inh outh (L8.pack . show . length . filter (S.isInfixOf arg . L.toStrict) . L8.lines)
+  interactHandle inh outh (L8.unlines . filter (S.isInfixOf arg . L.toStrict) . L8.lines)
 
 interactHandle :: Handle -> Handle -> (ByteString -> ByteString) -> IO ()
 interactHandle inh outh f = do

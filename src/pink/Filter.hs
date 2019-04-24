@@ -7,7 +7,7 @@ import System.IO
 
 filterHandle :: Handle -> Handle -> String -> IO ()
 filterHandle inh outh arg = do
-  interactHandle inh outh (show . length . filter (isInfixOf arg) . lines)
+  interactHandle inh outh (unlines . filter (isInfixOf arg) . lines)
 
 interactHandle :: Handle -> Handle -> (String -> String) -> IO ()
 interactHandle inh outh f = do

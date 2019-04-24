@@ -23,6 +23,16 @@ flag silver
   manual: True
   default: False
 
+flag green
+  description: Line-by-line search.
+  manual: True
+  default: False
+
+flag gold
+  description: Mutable buffer.
+  manual: True
+  default: False
+
 executable filter
   hs-source-dirs:      app
   main-is:             Main.hs
@@ -35,12 +45,22 @@ library
   exposed-modules:     Filter
   ghc-options:         -Wall -O2
   default-language:    Haskell2010
-  if flag(silver)
-     hs-source-dirs:   src/silver
+  if flag(gold)
+     hs-source-dirs:   src/gold
   else
-    if flag(blue)
-       hs-source-dirs:   src/blue
-    else
-       hs-source-dirs:   src/pink
+     if flag(green)
+        hs-source-dirs:   src/green
+     else
+        if flag(silver)
+           hs-source-dirs:   src/silver
+        else
+          if flag(blue)
+             hs-source-dirs:   src/blue
+          else
+             hs-source-dirs:   src/pink
   build-depends:       base,
-                       bytestring
+                       bytestring,
+                       vector,
+                       conduit,
+                       conduit-extra,
+                       resourcet
