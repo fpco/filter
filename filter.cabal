@@ -13,16 +13,26 @@ flag pink
   manual: True
   default: True
 
+flag blue
+  description: Bytestring naive filter.
+  manual: True
+  default: False
+
 executable filter
   hs-source-dirs:      app
   main-is:             Main.hs
   ghc-options:         -Wall -O2
-  build-depends:       base, filter
   default-language:    Haskell2010
+  build-depends:       base,
+                       filter
 
 library
   exposed-modules:     Filter
   ghc-options:         -Wall -O2
-  build-depends:       base
   default-language:    Haskell2010
-  hs-source-dirs:      src/pink
+  if flag(blue)
+     hs-source-dirs:   src/blue
+  else
+     hs-source-dirs:   src/pink
+  build-depends:       base,
+                       bytestring
