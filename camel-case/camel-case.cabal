@@ -23,30 +23,21 @@ flag bytestring
   manual: True
   default: False
 
-flag inplace-read
-  description: Use the src/bytestring implementation.
-  manual: True
-  default: False
-
 flag inplace
   description: Use the src/bytestring implementation.
   manual: True
   default: True
 
 library
-  if flag(inplace-read)
-    hs-source-dirs:    src/inplace-read
+  if flag(string)
+    hs-source-dirs:    src/string
   else
-    if flag(string)
-      hs-source-dirs:    src/string
+    if flag(bytestring)
+      hs-source-dirs:    src/bytestring
     else
-      if flag(bytestring)
-        hs-source-dirs:    src/bytestring
-      else
-        hs-source-dirs:    src/inplace
+      hs-source-dirs:    src/inplace
   ghc-options:         -Wall -O2
   exposed-modules:     CamelCase
-  other-modules:       System.IO.Efficient
   build-depends:       base >= 4.7 && < 5,
                        vector,
                        bytestring

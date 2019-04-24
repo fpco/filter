@@ -3,11 +3,11 @@ module CamelCase (camelCase) where
 import Data.Char (toUpper)
 import System.IO
 
-camelCase :: Handle -> IO ()
-camelCase h = interactHandle simple
+camelCase :: Handle -> Handle -> IO ()
+camelCase h out = interactHandle simple
   where interactHandle        ::  (String -> String) -> IO ()
         interactHandle f      =   do s <- hGetContents h
-                                     putStr (f s)
+                                     hPutStr out (f s)
 
 simple :: String -> String
 simple = unlines . map simple' . lines

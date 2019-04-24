@@ -1,5 +1,4 @@
 import CamelCase
-import CamelCase
 import Criterion.Main
 import System.IO
 

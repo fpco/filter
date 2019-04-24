@@ -10,8 +10,8 @@ import qualified Data.ByteString.Lazy.Char8 as L8
 import Data.ByteString.Builder (Builder, lazyByteString, word8, hPutBuilder)
 import System.IO (Handle, stdout)
 
-camelCase :: Handle -> IO ()
-camelCase h = L.hGetContents h >>= hPutBuilder stdout . simple
+camelCase :: Handle -> Handle -> IO ()
+camelCase h out = L.hGetContents h >>= hPutBuilder out . simple
 
 simple :: L.ByteString -> Builder
 simple = foldMap simple' . L8.lines
