@@ -1,4 +1,9 @@
 * Memory allocation testing is DONE
+But technically my bolt demo showed that copying directly from the fd
+required no linear allocations.
+
+It's isInfixOf that's allocating loads... interesting!
+
 * test suite
 * benchmark criterion
 * CPU instruction count

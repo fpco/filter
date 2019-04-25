@@ -9,6 +9,7 @@ import           Data.ByteString (ByteString)
 import qualified Data.ByteString as S
 import qualified Data.ByteString.Char8 as S8
 import           System.IO
+-- import           System.IO.ByteBuffer
 import           System.IO.Error
 import           UnsafeBuffer
 
