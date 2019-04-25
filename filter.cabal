@@ -23,6 +23,11 @@ flag silver
   manual: True
   default: False
 
+flag lime
+  description: Line-by-line search.
+  manual: True
+  default: False
+
 flag green
   description: Line-by-line search.
   manual: True
@@ -47,30 +52,36 @@ library
     Filter.Blue
     Filter.Gold
     Filter.Green
+    Filter.Lime
     Filter.Pink
     Filter.Silver
+    UnsafeBuffer
   ghc-options:         -Wall -O2
   default-language:    Haskell2010
   hs-source-dirs:   src
-  if flag(gold)
-     hs-source-dirs:   src/gold
+  if flag(lime)
+     hs-source-dirs:   src/lime
   else
-     if flag(green)
-        hs-source-dirs:   src/green
+     if flag(gold)
+        hs-source-dirs:   src/gold
      else
-        if flag(silver)
-           hs-source-dirs:   src/silver
+        if flag(green)
+           hs-source-dirs:   src/green
         else
-          if flag(blue)
-             hs-source-dirs:   src/blue
-          else
-             hs-source-dirs:   src/pink
+           if flag(silver)
+              hs-source-dirs:   src/silver
+           else
+             if flag(blue)
+                hs-source-dirs:   src/blue
+             else
+                hs-source-dirs:   src/pink
   build-depends:       base,
                        bytestring,
                        vector,
                        conduit,
                        conduit-extra,
-                       resourcet
+                       resourcet,
+                       mutable-containers
 
 test-suite space
   type:                exitcode-stdio-1.0

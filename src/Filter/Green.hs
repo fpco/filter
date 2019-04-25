@@ -6,8 +6,6 @@ module Filter.Green where
 
 import           Control.Exception
 import           Control.Monad
-import           Data.ByteString (ByteString)
-import qualified Data.ByteString as S
 import qualified Data.ByteString.Char8 as S8
 import           System.IO
 import           System.IO.Error

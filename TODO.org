@@ -1,0 +1,7 @@
+* Memory allocation testing is DONE
+* test suite
+* benchmark criterion
+* CPU instruction count
+* hatrace on the syscalls
+* write up a set of slides
+* using the slides, write a blog post

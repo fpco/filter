@@ -8,6 +8,7 @@ import           Control.Monad
 import qualified Filter.Blue
 import qualified Filter.Gold
 import qualified Filter.Green
+import qualified Filter.Lime
 import qualified Filter.Pink
 import qualified Filter.Silver
 import           System.IO
@@ -34,20 +35,12 @@ main =
                                   hClose file
                                   hClose devNull))
                            ()
-                           validation)
+                           (const Nothing))
                       ["he", "said", "Prince"])))
              [ ("Pink", Filter.Pink.filterHandle)
              , ("Blue", Filter.Blue.filterHandle)
              , ("Silver", Filter.Silver.filterHandle)
              , ("Green", Filter.Green.filterHandle)
+             , ("Lime", Filter.Lime.filterHandle)
              , ("Gold", Filter.Gold.filterHandle)
              ]))
-  where
-    validation weight = residency <|> allocations
-      where
-        allocations = do
-          guard (weightAllocatedBytes weight > 70000000)
-          pure "Total allocated exceeded."
-        residency = do
-          guard (weightMaxBytes weight > 20000)
-          pure "Max residency exceeded."
