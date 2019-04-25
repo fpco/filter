@@ -11,7 +11,7 @@ cabal-version:       >=1.10
 flag pink
   description: Use the simplest naive implementation.
   manual: True
-  default: True
+  default: False
 
 flag blue
   description: Bytestring naive filter.
@@ -26,7 +26,7 @@ flag silver
 flag green
   description: Line-by-line search.
   manual: True
-  default: False
+  default: True
 
 flag gold
   description: Mutable buffer.
