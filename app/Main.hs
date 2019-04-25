@@ -9,5 +9,4 @@ import System.IO
 main :: IO ()
 main = do
   arg:_ <- getArgs
-  devNull <- openFile "/dev/null" AppendMode
-  Filter.filterHandle stdin devNull arg
+  Filter.filterHandle stdin stdout arg
