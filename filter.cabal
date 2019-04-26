@@ -14,7 +14,7 @@ flag pink
   default: False
 
 flag blue
-  description: Bytestring naive filter.
+  description: Strict bytestring naive filter.
   manual: True
   default: False
 
@@ -29,7 +29,7 @@ flag green
   default: False
 
 flag gold
-  description: Mutable buffer.
+  description: Conduit.
   manual: True
   default: True
 
