@@ -12,7 +12,7 @@ main = do
   mapM_
     (\(label, impl) ->
        do putStrLn ("\n" ++ label)
-          mapM_
+          mapM
             (\word -> do
                inh <- openFile "war-and-peace.txt" ReadMode
                (_, sumInstrs) <- withInstructionsCounted (impl inh devNull word)

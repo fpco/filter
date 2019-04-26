@@ -8,7 +8,8 @@
 
 ## Instructions benchmarks
 
-    $ stack build --exec "sudo $(stack exec which instructions-bench)"
+    $ stack build --bench --no-run-benchmarks
+    $ sudo stack bench :instructions-bench --allow-different-user
 
 ## Time benchmarks
 
@@ -19,3 +20,8 @@
 ## Space tests
 
     $ stack test :space-test
+
+## Instructions tests
+
+    $ stack build --test --no-run-tests
+    $ sudo stack test :instructions-test --allow-different-user
