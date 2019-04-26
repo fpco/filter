@@ -26,12 +26,12 @@ flag silver
 flag green
   description: Line-by-line search.
   manual: True
-  default: True
+  default: False
 
 flag gold
   description: Mutable buffer.
   manual: True
-  default: False
+  default: True
 
 executable filter
   hs-source-dirs:      app
@@ -74,7 +74,7 @@ library
                        resourcet,
                        mutable-containers
 
-test-suite space
+test-suite space-test
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test
   main-is:             Space.hs

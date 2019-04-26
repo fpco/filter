@@ -13,3 +13,9 @@
 ## Time benchmarks
 
     $ stack bench :time-bench
+
+# Tests
+
+## Space tests
+
+    $ stack test :space-test

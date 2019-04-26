@@ -32,7 +32,7 @@ main =
     validation weight = residency <|> allocations
       where
         allocations = do
-          guard (weightAllocatedBytes weight > 70_000_000)
+          guard (weightAllocatedBytes weight > 100_000_000)
           pure "Total allocated exceeded."
         residency = do
           guard (weightMaxBytes weight > 20_000)
