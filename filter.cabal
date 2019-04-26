@@ -79,6 +79,18 @@ library
                        resourcet,
                        mutable-containers
 
+test-suite existential-test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Existential.hs
+  build-depends:       base
+                     , filter
+                     , hspec
+                     , temporary
+                     , bytestring
+  ghc-options:         -Wall -O0
+  default-language:    Haskell2010
+
 test-suite space-test
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test

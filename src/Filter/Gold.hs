@@ -5,7 +5,6 @@
 
 module Filter.Gold where
 
-import           Data.ByteString (ByteString)
 import qualified Data.ByteString.Char8 as S8
 import           Data.Conduit
 import qualified Data.Conduit.Binary as CB
