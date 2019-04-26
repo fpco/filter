@@ -41,7 +41,7 @@ Compile the different implementations:
 ``` bash
 for i in $(ls src/ | grep '^[a-z]')
 do
-stack build --test --bench --pedantic --flag filter:instructions
---flag "filter:$i" --no-run-tests --no-run-benchmarks --fast
+stack build --test --bench --pedantic --flag filter:instructions \
+  --flag "filter:$i" --no-run-tests --no-run-benchmarks --fast
 done
 ```
