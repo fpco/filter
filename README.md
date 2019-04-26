@@ -6,14 +6,14 @@
 
     $ stack bench :space-bench
 
+#### Time benchmarks
+
+    $ stack bench :time-bench
+
 #### Instructions benchmarks
 
     $ stack build --bench --no-run-benchmarks
     $ sudo stack bench :instructions-bench --allow-different-user
-
-#### Time benchmarks
-
-    $ stack bench :time-bench
 
 ## Tests
 
