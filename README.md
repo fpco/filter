@@ -10,6 +10,10 @@
 
     $ stack test :property-test --coverage
 
+#### Trace tests
+
+    $ stack test :trace-test
+
 #### Space tests
 
     $ stack test :space-test
