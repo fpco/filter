@@ -47,7 +47,7 @@ fileIO = do
   results <-
     mapM
       (\(word, limit) -> do
-         inh <- openFile "war-and-peace.txt" ReadMode
+         inh <- openFile "assets/war-and-peace.txt" ReadMode
          (_, sumInstrs) <-
            withInstructionsCounted (filterHandle inh devNull word)
          let result =

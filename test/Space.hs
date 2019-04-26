@@ -20,7 +20,7 @@ main =
                 validateAction
                   word
                   (const
-                     (do file <- openFile "war-and-peace.txt" ReadMode
+                     (do file <- openFile "assets/war-and-peace.txt" ReadMode
                          devNull <- openFile "/dev/null" AppendMode
                          Filter.filterHandle file devNull word
                          hClose file

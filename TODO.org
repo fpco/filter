@@ -1,7 +1,0 @@
-* DONE Memory allocation testing is DONE
-* DONE CPU instruction count
-* DONE benchmark criterion
-* test suite
-* hatrace on the syscalls
-* write up a set of slides
-* using the slides, write a blog post

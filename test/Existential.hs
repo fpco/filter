@@ -20,7 +20,7 @@ spec = do
     (do it
           "war-and-peace.txt"
           (do bracket
-                (openFile "war-and-peace.txt" ReadMode)
+                (openFile "assets/war-and-peace.txt" ReadMode)
                 hClose
                 (\inp ->
                    withSystemTempFile

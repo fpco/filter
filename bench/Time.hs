@@ -18,7 +18,7 @@ main = do
         "War and Peace"
         [ bench
           (impl ++ "/" ++ wrd)
-          (nfIO (action act ("war-and-peace.txt") wrd))
+          (nfIO (action act ("assets/war-and-peace.txt") wrd))
         | (impl, act) <-
             [ ("Pink", Filter.Pink.filterHandle)
             , ("Blue", Filter.Blue.filterHandle)

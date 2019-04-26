@@ -14,7 +14,7 @@ main = do
        do putStrLn ("\n" ++ label)
           mapM
             (\word -> do
-               inh <- openFile "war-and-peace.txt" ReadMode
+               inh <- openFile "assets/war-and-peace.txt" ReadMode
                (_, sumInstrs) <- withInstructionsCounted (impl inh devNull word)
                putStrLn (word ++ "\tCPU instructions: " ++ show sumInstrs))
             ["he","said","Prince"])

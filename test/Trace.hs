@@ -1,12 +1,16 @@
 -- |
 
 import           Control.Monad
+import           Filter
+import           System.Environment
 import           System.Exit
 import qualified System.Hatrace as Hatrace
+import           System.IO
 import           Test.Hspec
 
 main :: IO ()
-main = hspec spec
+main = do
+  hspec spec
 
 spec :: SpecWith ()
 spec =
@@ -16,7 +20,7 @@ spec =
        "filterLine"
        (it
           "filterLine = isInfixOf"
-          (Hatrace.traceForkProcess "echo" ["hello"] `shouldReturn` ExitSuccess)))
+          (Hatrace.traceForkProcess "filter" ["-f","assets/simple.txt","maximum"] `shouldReturn` ExitSuccess)))
 
 -- | Assertion we run before each test to ensure no leftover child processes
 -- that could affect subsequent tests.
