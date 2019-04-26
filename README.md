@@ -21,6 +21,10 @@
 
     $ stack test :existential-test --coverage
 
+#### Property tests
+
+    $ stack test :property-test --coverage
+
 #### Space tests
 
     $ stack test :space-test
