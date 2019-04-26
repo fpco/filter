@@ -9,6 +9,7 @@ import Data.Mutable
 import Foreign
 import Foreign.C
 import System.IO
+import           System.Posix.Types (Fd (..))
 
 data Buffer =
   Buffer
@@ -32,11 +33,17 @@ newBuffer size = do
       , bufferChunkSize = size
       }
 
-copyIntoBuffer :: Handle -> Buffer -> IO Int
+copyIntoBuffer :: Fd -> Buffer -> IO Int
 copyIntoBuffer handle buffer = do
   copiedSoFar <- readRef (bufferCopied buffer)
   ptr <- readRef (bufferPtr buffer)
-  copied <- hGetBuf handle (plusPtr ptr copiedSoFar) (bufferChunkSize buffer)
+  copied <-
+    fmap
+      fromIntegral
+      (c_read
+         handle
+         (plusPtr ptr copiedSoFar)
+         (fromIntegral (bufferChunkSize buffer)))
   when
     (copied > 0)
     (do let copiedSoFar' = copiedSoFar + copied
@@ -69,13 +76,26 @@ consume bytes buffer = do
   -- print ("remainder", out)
   -- putStrLn "Done consuming."
 
-{-# INLINE consume #-}
-bufferUnsafeByteString :: Buffer -> IO ByteString
-bufferUnsafeByteString buffer = do
-  ptr <- readRef (bufferPtr buffer)
-  len <- readRef (bufferCopied buffer)
-  unsafePackCStringLen (ptr, len)
-{-# INLINE bufferUnsafeByteString #-}
+-- {-# INLINE consume #-}
+-- bufferUnsafeByteString :: Buffer -> IO ByteString
+-- bufferUnsafeByteString buffer = do
+--   ptr <- readRef (bufferPtr buffer)
+--   len <- readRef (bufferCopied buffer)
+--   unsafePackCStringLen (ptr, len)
+-- {-# INLINE bufferUnsafeByteString #-}
 
 bufferAvailable :: Buffer -> IO Int
 bufferAvailable = readRef . bufferCopied
+
+s_elemIndex :: CChar -> Int -> Ptr CChar -> IO (Maybe Int)
+s_elemIndex char size ptr = do
+  ptr' <- c_memchr ptr char (fromIntegral size)
+  if ptr' == nullPtr
+    then pure Nothing
+    else pure (Just (minusPtr ptr' ptr))
+
+foreign import ccall unsafe "read"
+   c_read :: Fd -> Ptr CChar -> CSize -> IO CSize
+
+foreign import ccall unsafe "memchr"
+    c_memchr :: Ptr CChar -> CChar -> CSize -> IO (Ptr CChar)
