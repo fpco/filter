@@ -4,9 +4,7 @@
 
 import           Control.Exception
 import           Data.ByteString (ByteString)
-import           Data.ByteString (ByteString)
 import qualified Data.ByteString as S
-import qualified Data.ByteString.Char8 as S8
 import           Filter
 import           System.IO
 import           System.IO.Temp
