@@ -1,5 +1,7 @@
 {-# LANGUAGE BangPatterns #-}
 {-# LANGUAGE NumericUnderscores #-}
+import           Data.List
+import           Text.Printf
 import           Data.String
 import qualified Data.ByteString as S
 import           Data.ByteString (ByteString)
@@ -12,23 +14,38 @@ data Result = OK | INVALID deriving (Show, Eq)
 
 main :: IO ()
 main = do
+  putStrLn ""
   filterStr
+  putStrLn ""
   fileIO
 
 filterStr :: IO ()
 filterStr = do
-  let !pat = fromString "his"
-      !bs =
-        fromString
-          (replicate 4096 'x' <>
-           "maximum. Kut\195\186zov saw this and merely sighed and shrugged his shoulders.\r")
-  (_, result) <- withInstructionsCounted (evaluate (filterLine pat bs))
-  putStrLn ("filterLine: " ++ "\tCPU instructions: " ++ show result)
+  results <-
+    mapM
+      (\i -> do
+         let !pat = fromString "this"
+             !bs = fromString (replicate i 'x' <> "this")
+         (_, result) <- withInstructionsCounted (evaluate (filterLine pat bs))
+         pure (i, result))
+      (take 7 (iterate (* 10) 1))
+  putStrLn
+    (tablize
+       ([(True, "Size"), (True, "Instructions"), (True, "Ratio")] :
+        map
+          (\(size, instructions) ->
+             [ (False, show size)
+             , (False, show instructions)
+             , ( False
+               , printf
+                   "%.3f instructions/byte"
+                   (fromIntegral instructions / fromIntegral size :: Double))
+             ])
+          results))
 
 fileIO :: IO ()
 fileIO = do
   devNull <- openFile "/dev/null" AppendMode
-  putStrLn ""
   results <-
     mapM
       (\(word, limit) -> do
@@ -51,3 +68,17 @@ fileIO = do
   if any (== INVALID) results
     then error "Invalid results"
     else pure ()
+
+-- | Make a table out of a list of rows.
+tablize :: [[(Bool,String)]] -> String
+tablize xs =
+  intercalate "\n" (map (intercalate "  " . map fill . zip [0 ..]) xs)
+  where
+    fill (x', (left', text')) =
+      printf ("%" ++ direction ++ show width ++ "s") text'
+      where
+        direction =
+          if left'
+            then "-"
+            else ""
+        width = maximum (map (length . snd . (!! x')) xs)
