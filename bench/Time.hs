@@ -11,7 +11,7 @@ main = do
   devNull <- openFile "/dev/null" AppendMode
   let action act fp wrd = do
         lazy <- openFile fp ReadMode
-        act lazy devNull wrd
+        _ <- act lazy devNull wrd
         hClose lazy
   defaultMain
     [ bgroup
