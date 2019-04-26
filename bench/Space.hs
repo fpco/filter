@@ -8,7 +8,6 @@ import           Control.Monad
 import qualified Filter.Blue
 import qualified Filter.Gold
 import qualified Filter.Green
-import qualified Filter.Lime
 import qualified Filter.Pink
 import qualified Filter.Silver
 import           System.IO
@@ -41,6 +40,5 @@ main =
              , ("Blue", Filter.Blue.filterHandle)
              , ("Silver", Filter.Silver.filterHandle)
              , ("Green", Filter.Green.filterHandle)
-             , ("Lime", Filter.Lime.filterHandle)
              , ("Gold", Filter.Gold.filterHandle)
              ]))

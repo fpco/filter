@@ -23,11 +23,6 @@ flag silver
   manual: True
   default: False
 
-flag lime
-  description: Line-by-line search.
-  manual: True
-  default: False
-
 flag green
   description: Line-by-line search.
   manual: True
@@ -52,29 +47,25 @@ library
     Filter.Blue
     Filter.Gold
     Filter.Green
-    Filter.Lime
     Filter.Pink
     Filter.Silver
     UnsafeBuffer
   ghc-options:         -Wall -O2
   default-language:    Haskell2010
   hs-source-dirs:   src
-  if flag(lime)
-     hs-source-dirs:   src/lime
+  if flag(gold)
+     hs-source-dirs:   src/gold
   else
-     if flag(gold)
-        hs-source-dirs:   src/gold
+     if flag(green)
+        hs-source-dirs:   src/green
      else
-        if flag(green)
-           hs-source-dirs:   src/green
+        if flag(silver)
+           hs-source-dirs:   src/silver
         else
-           if flag(silver)
-              hs-source-dirs:   src/silver
-           else
-             if flag(blue)
-                hs-source-dirs:   src/blue
-             else
-                hs-source-dirs:   src/pink
+          if flag(blue)
+             hs-source-dirs:   src/blue
+          else
+             hs-source-dirs:   src/pink
   build-depends:       base,
                        bytestring,
                        vector,
@@ -100,5 +91,24 @@ benchmark space-bench
   build-depends:       base
                      , filter
                      , weigh >= 0.1.14
+  ghc-options:         -Wall -O2
+  default-language:    Haskell2010
+
+benchmark time-bench
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      bench
+  main-is:             Time.hs
+  build-depends:       base
+                     , filter
+                     , criterion
+  ghc-options:         -Wall -O2
+  default-language:    Haskell2010
+
+executable instructions-bench
+  hs-source-dirs:      bench
+  main-is:             Instructions.hs
+  build-depends:       base
+                     , filter
+                     , cpu-instruction-counter
   ghc-options:         -Wall -O2
   default-language:    Haskell2010

@@ -16,4 +16,4 @@ filterHandle :: Handle -> Handle -> String -> IO ()
 filterHandle input out (S8.pack -> query) = do
   runConduit
     (CB.sourceHandle input .| CB.lines .| CL.filter (S8.isInfixOf query) .| CL.map (<> "\n") .|
-     CB.sinkHandle stdout)
+     CB.sinkHandle out)

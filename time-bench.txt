@@ -1,0 +1,95 @@
+benchmarking War and Peace/Pink/he
+time                 117.8 ms   (116.8 ms .. 119.7 ms)
+                     1.000 R²   (0.999 R² .. 1.000 R²)
+mean                 118.5 ms   (117.9 ms .. 119.4 ms)
+std dev              1.127 ms   (792.4 μs .. 1.434 ms)
+variance introduced by outliers: 11% (moderately inflated)
+
+benchmarking War and Peace/Pink/said
+time                 121.3 ms   (120.4 ms .. 122.1 ms)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 122.4 ms   (121.8 ms .. 124.2 ms)
+std dev              1.332 ms   (247.3 μs .. 2.060 ms)
+variance introduced by outliers: 11% (moderately inflated)
+
+benchmarking War and Peace/Pink/Prince
+time                 119.5 ms   (118.4 ms .. 120.4 ms)
+                     1.000 R²   (0.999 R² .. 1.000 R²)
+mean                 119.3 ms   (118.8 ms .. 119.8 ms)
+std dev              779.9 μs   (490.9 μs .. 1.233 ms)
+variance introduced by outliers: 11% (moderately inflated)
+
+benchmarking War and Peace/Blue/he
+time                 11.36 ms   (11.28 ms .. 11.45 ms)
+                     1.000 R²   (0.999 R² .. 1.000 R²)
+mean                 11.47 ms   (11.38 ms .. 11.70 ms)
+std dev              341.2 μs   (143.7 μs .. 669.7 μs)
+
+benchmarking War and Peace/Blue/said
+time                 6.928 ms   (6.885 ms .. 6.977 ms)
+                     1.000 R²   (0.999 R² .. 1.000 R²)
+mean                 7.028 ms   (6.979 ms .. 7.229 ms)
+std dev              234.4 μs   (82.29 μs .. 491.6 μs)
+variance introduced by outliers: 13% (moderately inflated)
+
+benchmarking War and Peace/Blue/Prince
+time                 6.971 ms   (6.895 ms .. 7.053 ms)
+                     1.000 R²   (0.999 R² .. 1.000 R²)
+mean                 6.991 ms   (6.957 ms .. 7.101 ms)
+std dev              159.1 μs   (50.83 μs .. 319.4 μs)
+
+benchmarking War and Peace/Silver/he
+time                 11.72 ms   (11.63 ms .. 11.81 ms)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 11.79 ms   (11.72 ms .. 12.04 ms)
+std dev              310.8 μs   (64.70 μs .. 627.0 μs)
+
+benchmarking War and Peace/Silver/said
+time                 6.767 ms   (6.727 ms .. 6.805 ms)
+                     1.000 R²   (0.999 R² .. 1.000 R²)
+mean                 6.888 ms   (6.841 ms .. 6.992 ms)
+std dev              187.6 μs   (98.93 μs .. 331.0 μs)
+variance introduced by outliers: 10% (moderately inflated)
+
+benchmarking War and Peace/Silver/Prince
+time                 6.730 ms   (6.678 ms .. 6.770 ms)
+                     1.000 R²   (0.999 R² .. 1.000 R²)
+mean                 6.876 ms   (6.808 ms .. 7.039 ms)
+std dev              298.6 μs   (137.9 μs .. 536.8 μs)
+variance introduced by outliers: 21% (moderately inflated)
+
+benchmarking War and Peace/Green/he
+time                 18.49 ms   (18.39 ms .. 18.61 ms)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 18.81 ms   (18.67 ms .. 19.26 ms)
+std dev              532.9 μs   (122.1 μs .. 1.013 ms)
+
+benchmarking War and Peace/Green/said
+time                 16.79 ms   (16.67 ms .. 16.94 ms)
+                     1.000 R²   (0.999 R² .. 1.000 R²)
+mean                 16.93 ms   (16.84 ms .. 17.14 ms)
+std dev              296.4 μs   (139.4 μs .. 522.6 μs)
+
+benchmarking War and Peace/Green/Prince
+time                 16.96 ms   (16.81 ms .. 17.10 ms)
+                     1.000 R²   (0.999 R² .. 1.000 R²)
+mean                 17.02 ms   (16.93 ms .. 17.24 ms)
+std dev              308.9 μs   (119.3 μs .. 502.6 μs)
+
+benchmarking War and Peace/Gold/he
+time                 16.82 ms   (16.70 ms .. 16.94 ms)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 17.00 ms   (16.90 ms .. 17.24 ms)
+std dev              351.9 μs   (110.6 μs .. 609.4 μs)
+
+benchmarking War and Peace/Gold/said
+time                 8.718 ms   (8.653 ms .. 8.788 ms)
+                     1.000 R²   (0.999 R² .. 1.000 R²)
+mean                 8.798 ms   (8.757 ms .. 8.891 ms)
+std dev              171.2 μs   (54.64 μs .. 317.0 μs)
+
+benchmarking War and Peace/Gold/Prince
+time                 8.610 ms   (8.531 ms .. 8.689 ms)
+                     0.999 R²   (0.999 R² .. 1.000 R²)
+mean                 8.729 ms   (8.674 ms .. 8.862 ms)
+std dev              223.2 μs   (94.33 μs .. 412.9 μs)

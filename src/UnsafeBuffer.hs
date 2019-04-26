@@ -76,13 +76,13 @@ consume bytes buffer = do
   -- print ("remainder", out)
   -- putStrLn "Done consuming."
 
--- {-# INLINE consume #-}
--- bufferUnsafeByteString :: Buffer -> IO ByteString
--- bufferUnsafeByteString buffer = do
---   ptr <- readRef (bufferPtr buffer)
---   len <- readRef (bufferCopied buffer)
---   unsafePackCStringLen (ptr, len)
--- {-# INLINE bufferUnsafeByteString #-}
+{-# INLINE consume #-}
+bufferUnsafeByteString :: Buffer -> IO ByteString
+bufferUnsafeByteString buffer = do
+  ptr <- readRef (bufferPtr buffer)
+  len <- readRef (bufferCopied buffer)
+  unsafePackCStringLen (ptr, len)
+{-# INLINE bufferUnsafeByteString #-}
 
 bufferAvailable :: Buffer -> IO Int
 bufferAvailable = readRef . bufferCopied
@@ -94,8 +94,24 @@ s_elemIndex char size ptr = do
     then pure Nothing
     else pure (Just (minusPtr ptr' ptr))
 
+s_isInfixOf :: Ptr CChar -> CSize -> Ptr CChar -> CSize -> IO (Maybe Int)
+s_isInfixOf haystack haystacklen needle needlelen =
+  do ptr <- c_memmem haystack haystacklen needle needlelen
+     if ptr == nullPtr
+        then pure Nothing
+        else pure (Just (minusPtr ptr haystack))
+
 foreign import ccall unsafe "read"
    c_read :: Fd -> Ptr CChar -> CSize -> IO CSize
 
+foreign import ccall unsafe "write"
+   c_write :: Fd -> Ptr CChar -> CSize -> IO CSize
+
+foreign import ccall unsafe "fsync"
+   c_fsync :: Fd -> IO CSize
+
 foreign import ccall unsafe "memchr"
     c_memchr :: Ptr CChar -> CChar -> CSize -> IO (Ptr CChar)
+
+foreign import ccall unsafe "memmem"
+    c_memmem :: Ptr CChar -> CSize -> Ptr CChar -> CSize -> IO (Ptr CChar)

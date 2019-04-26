@@ -1,0 +1,36 @@
+war-and-peace
+
+  Pink
+
+    Case      Allocated      Max  GCs  Check
+    he      702,921,392   49,792  675  OK
+    said    565,858,152  117,872  542  OK
+    Prince  563,776,872  111,744  540  OK
+
+  Blue
+
+    Case     Allocated        Max  GCs  Check
+    he      44,535,232  3,565,496   37  OK
+    said    30,508,360  3,412,544   26  OK
+    Prince  30,232,896  3,407,080   26  OK
+
+  Silver
+
+    Case     Allocated     Max  GCs  Check
+    he      71,079,800  54,160   64  OK
+    said    30,905,544  54,168   26  OK
+    Prince  30,119,472  54,072   25  OK
+
+  Green
+
+    Case     Allocated     Max  GCs  Check
+    he      60,073,968  18,000   57  OK
+    said    40,044,352  18,000   38  OK
+    Prince  39,650,616  18,000   38  OK
+
+  Gold
+
+    Case     Allocated     Max  GCs  Check
+    he      97,212,488  18,272   90  OK
+    said    45,103,520  18,272   40  OK
+    Prince  44,089,320  18,272   39  OK

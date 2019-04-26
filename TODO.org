@@ -1,12 +1,7 @@
-* Memory allocation testing is DONE
-But technically my bolt demo showed that copying directly from the fd
-required no linear allocations.
-
-It's isInfixOf that's allocating loads... interesting!
-
+* DONE Memory allocation testing is DONE
+* DONE CPU instruction count
+* DONE benchmark criterion
 * test suite
-* benchmark criterion
-* CPU instruction count
 * hatrace on the syscalls
 * write up a set of slides
 * using the slides, write a blog post

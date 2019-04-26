@@ -1,9 +1,15 @@
 # filter
 
-Steps:
+# Benchmarks
 
-- Measure allocations
-- Measure CPU instructions
-- Measure syscalls
-- Test cases
-- Make Liquid Haskell-based low-level version
+## Space benchmarks
+
+    $ stack bench :space-bench
+
+## Instructions benchmarks
+
+    $ stack build --exec "sudo $(stack exec which instructions-bench)"
+
+## Time benchmarks
+
+    $ stack bench :time-bench

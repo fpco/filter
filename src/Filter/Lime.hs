@@ -9,6 +9,7 @@ import           Control.Monad
 import           Data.ByteString (ByteString)
 import qualified Data.ByteString as S
 import qualified Data.ByteString.Char8 as S8
+import           Data.ByteString.Unsafe
 import           Data.Mutable
 import           System.IO
 -- import           System.IO.ByteBuffer
@@ -20,9 +21,10 @@ import           GHC.IO.Handle.FD
 import           System.Posix.Types (Fd (..))
 
 filterHandle :: Handle -> Handle -> String -> IO ()
-filterHandle inh outh (S8.pack -> arg) = do
+filterHandle inh outh (S8.pack -> arg) = unsafeUseAsCStringLen arg $ \(needle,needlelen)-> do
   fd <- fmap (Fd . fdFD) (handleToFd inh)
-  buffer <- newBuffer 4096
+  fdOut <- fmap (Fd . fdFD) (handleToFd outh)
+  buffer <- newBuffer (4096 )
   let getLine next = do copied <- next
                         -- putStrLn ("Copied bytes: "++show copied)
                         if copied == 0
@@ -34,7 +36,7 @@ filterHandle inh outh (S8.pack -> arg) = do
                          result <- s_elemIndex 10 copied ptr
                          case result of
                            Just eolIdx -> do -- putStrLn ("Complete chunk: " ++ show (S.take eolIdx bs))
-                                             pure (Just (mempty ,consume (eolIdx+1) buffer))
+                                             pure (Just (ptr, eolIdx ,consume (eolIdx+1) buffer))
                            Nothing -> do -- putStrLn ("Incomplete chunk: " ++ show bs)
                                          getLine (copyIntoBuffer fd buffer)
       go next = do
@@ -42,9 +44,18 @@ filterHandle inh outh (S8.pack -> arg) = do
         case result of
           Nothing ->
             pure ()
-          Just (line :: (), consume) -> do
+          Just (ptr, eolIdx, consume) -> do
                 -- putStrLn ("Line! " ++ show line)
+                is <- s_isInfixOf ptr (fromIntegral eolIdx) needle (fromIntegral needlelen)
                 -- when (S8.isInfixOf arg line) (S8.hPutStrLn outh line)
+                case is of
+                  Just{} -> do str <- bufferUnsafeByteString buffer
+                               -- written <-  (c_write 1 ptr (fromIntegral eolIdx))
+                               -- if written < fromIntegral eolIdx
+                               --    then error "Noooo"
+                               --    else pure ()
+                               S.hPutStrLn outh (S.take eolIdx str)
+                  Nothing -> pure ()
                 consume
                 -- bs <- bufferUnsafeByteString buffer
                 -- putStrLn ("Remainder: " ++ show bs)
@@ -53,3 +64,5 @@ filterHandle inh outh (S8.pack -> arg) = do
                           then copyIntoBuffer fd buffer
                           else pure avail)
   go (copyIntoBuffer fd buffer)
+  c_fsync fdOut
+  pure ()
