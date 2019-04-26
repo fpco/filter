@@ -25,7 +25,7 @@ main = do
          pure result)
       [ ("he", 200_000_000)
       , ("said", 105_000_000)
-      , ("Prince", 102_000_000)
+      , ("Prince", 105_000_000)
       , ("Haskell", 100_000_000)
       ]
   if any (== INVALID) results
