@@ -3,8 +3,6 @@
 import           Data.List
 import           Text.Printf
 import           Data.String
-import qualified Data.ByteString as S
-import           Data.ByteString (ByteString)
 import           Control.Exception
 import           Filter
 import           System.CPUInstructionCounter
