@@ -100,9 +100,12 @@ test-suite property-test
                      , hspec
                      , bytestring
                      , validity
+                     , genvalidity-hspec
+                     , genvalidity-bytestring
                      , QuickCheck
   ghc-options:         -Wall -O0
   default-language:    Haskell2010
+
 
 test-suite trace-test
   type:                exitcode-stdio-1.0
