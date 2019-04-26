@@ -1,27 +1,27 @@
 # filter
 
-# Benchmarks
+## Benchmarks
 
-## Space benchmarks
+#### Space benchmarks
 
     $ stack bench :space-bench
 
-## Instructions benchmarks
+#### Instructions benchmarks
 
     $ stack build --bench --no-run-benchmarks
     $ sudo stack bench :instructions-bench --allow-different-user
 
-## Time benchmarks
+#### Time benchmarks
 
     $ stack bench :time-bench
 
-# Tests
+## Tests
 
-## Space tests
+#### Space tests
 
     $ stack test :space-test
 
-## Instructions tests
+#### Instructions tests
 
     $ stack build --test --no-run-tests
     $ sudo stack test :instructions-test --allow-different-user
