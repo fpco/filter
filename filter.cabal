@@ -76,7 +76,8 @@ library
                        conduit,
                        conduit-extra,
                        resourcet,
-                       mutable-containers
+                       mutable-containers,
+                       deepseq
 
 test-suite existential-test
   type:                exitcode-stdio-1.0
