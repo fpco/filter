@@ -3,8 +3,6 @@
 
 -- | Test allocation limits.
 
-import           Control.Applicative
-import           Control.Monad
 import qualified Filter.Blue
 import qualified Filter.Gold
 import qualified Filter.Green
