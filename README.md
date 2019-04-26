@@ -17,6 +17,10 @@
 
 ## Tests
 
+#### Existential tests
+
+    $ stack test :existential-test --coverage
+
 #### Space tests
 
     $ stack test :space-test
