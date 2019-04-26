@@ -91,6 +91,19 @@ test-suite existential-test
   ghc-options:         -Wall -O0
   default-language:    Haskell2010
 
+test-suite property-test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Property.hs
+  build-depends:       base
+                     , filter
+                     , hspec
+                     , bytestring
+                     , validity
+                     , QuickCheck
+  ghc-options:         -Wall -O0
+  default-language:    Haskell2010
+
 test-suite space-test
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test
