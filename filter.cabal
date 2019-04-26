@@ -33,6 +33,11 @@ flag gold
   manual: True
   default: True
 
+flag instructions
+  description: Enable instructions builds
+  manual: True
+  default: False
+
 executable filter
   hs-source-dirs:      app
   main-is:             Main.hs
@@ -85,6 +90,10 @@ test-suite space-test
   default-language:    Haskell2010
 
 test-suite instructions-test
+  if flag(instructions)
+    buildable: True
+  else
+    buildable: False
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test
   main-is:             Instructions.hs
@@ -115,6 +124,9 @@ benchmark time-bench
   default-language:    Haskell2010
 
 benchmark instructions-bench
+  buildable: False
+  if flag(instructions)
+    buildable: True
   type:                exitcode-stdio-1.0
   hs-source-dirs:      bench
   main-is:             Instructions.hs

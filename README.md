@@ -12,7 +12,7 @@
 
 #### Instructions benchmarks
 
-    $ stack build --bench --no-run-benchmarks
+    $ stack build --bench --no-run-benchmarks :instructions-bench --flag filter:instructions
     $ sudo stack bench :instructions-bench --allow-different-user
 
 ## Tests
@@ -23,5 +23,5 @@
 
 #### Instructions tests
 
-    $ stack build --test --no-run-tests
+    $ stack build --test --no-run-tests :instructions-test --flag filter:instructions
     $ sudo stack test :instructions-test --allow-different-user
