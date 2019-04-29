@@ -1,5 +1,9 @@
 {-# LANGUAGE BangPatterns #-}
 {-# LANGUAGE NumericUnderscores #-}
+import           Data.Bifunctor
+import           Statistics.Regression
+import qualified Data.Vector as V
+import           Data.Vector (Vector)
 import           Data.List
 import           Text.Printf
 import           Data.String
@@ -7,8 +11,23 @@ import           Control.Exception
 import           Filter
 import           System.CPUInstructionCounter
 import           System.IO
+import qualified Data.Vector.Unboxed as UV
 
 data Result = OK | INVALID deriving (Show, Eq)
+
+
+datapoints :: [Vector Double]
+datapoints =
+  map
+    V.fromList
+    [ [1, 597]
+    , [10, 723]
+    , [100, 1983]
+    , [1000, 14583]
+    , [10000, 140583]
+    , [100000, 1400583]
+    , [1000000, 14000583]
+    ]
 
 main :: IO ()
 main = do
@@ -27,19 +46,23 @@ filterStr = do
          (_, result) <- withInstructionsCounted (evaluate (filterLine pat bs))
          pure (i, result))
       (take 7 (iterate (* 10) 1))
+  let ([per, constant], rSquared) =
+        first
+          UV.toList
+          (olsRegress
+             [UV.fromList (map (fromIntegral . fst) results)]
+             (UV.fromList (map (fromIntegral . snd) results)))
   putStrLn
     (tablize
-       ([(True, "Size"), (True, "Instructions"), (True, "Ratio")] :
+       ([(True, "Size"), (True, "Instructions")] :
         map
           (\(size, instructions) ->
-             [ (False, show size)
-             , (False, show instructions)
-             , ( False
-               , printf
-                   "%.3f instructions/byte"
-                   (fromIntegral instructions / fromIntegral size :: Double))
-             ])
+             [(False, show size), (False, show instructions)])
           results))
+  putStrLn ""
+  printf "Constant factor: %.3f instructions per call\n" constant
+  printf "Instructions per byte: %.0f\n" per
+  printf "Goodness of fit R²: %f\n" rSquared
 
 fileIO :: IO ()
 fileIO = do
